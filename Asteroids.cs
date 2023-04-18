@@ -32,7 +32,7 @@ namespace Asteroids
             numberOfPoints = rnd.Next(5, 10); //'random number of points between 5 and 9
             for (int i = 1; i <= numberOfPoints; i++)
             { //'loop through the number of points and calculate angles between the points based on the number of points and random numbers
-                FixedAngles[i - 1] = rnd.NextDouble() * (i * (2 * Math.PI) / numberOfPoints) + (i - 1) * (2 * Math.PI) / numberOfPoints; // check rnd.nextdouble // ask if FixedAngles[] is valid, [] not ()
+                FixedAngles[i - 1] = rnd.NextDouble() * (i * (1 * Math.PI) / numberOfPoints) + (i - 1) * (1 * Math.PI) / numberOfPoints; // check rnd.nextdouble // ask if FixedAngles[] is valid, [] not ()
                 //MessageBox.Show("Fixed angle is: " + FixedAngles[i-1].ToString()); //x is anywhere from 16-35, y is always 0
             }
             
