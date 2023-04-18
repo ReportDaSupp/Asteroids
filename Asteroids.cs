@@ -28,12 +28,12 @@ namespace Asteroids
             int innervalue = value;
             bool onScreen = true;
             size = asize;
-            double aSpeed = rnd.NextDouble() * 3 + 1; // 'random speed variable between 1 and 4
+            aSpeed = rnd.NextDouble() * 3 + 1; // 'random speed variable between 1 and 4
             numberOfPoints = rnd.Next(5, 10); //'random number of points between 5 and 9
-            for (int i = 1; i <= numberOfPoints; i++)
+            for (int i = 0; i <= numberOfPoints - 1; i++)
             { //'loop through the number of points and calculate angles between the points based on the number of points and random numbers
-                FixedAngles[i - 1] = rnd.NextDouble() * (i * (1 * Math.PI) / numberOfPoints) + (i - 1) * (1 * Math.PI) / numberOfPoints; // check rnd.nextdouble // ask if FixedAngles[] is valid, [] not ()
-                //MessageBox.Show("Fixed angle is: " + FixedAngles[i-1].ToString()); //x is anywhere from 16-35, y is always 0
+                    FixedAngles[i] = (rnd.NextDouble() * (2 * Math.PI / numberOfPoints)) + ((i) * (2 * Math.PI) / numberOfPoints); // check rnd.nextdouble // ask if FixedAngles[] is valid, [] not ()
+                    //MessageBox.Show("Fixed angle is: " + FixedAngles[i-1].ToString()); //x is anywhere from 16-35, y is always 0
             }
             
             Array.Resize(ref xPoints, (numberOfPoints)); //'define the size of the array of x coordinates  // using array.resize may not work, found on         -----                  ------                https://social.msdn.microsoft.com/Forums/en-US/545e6adb-550f-400c-9a68-a4a5e3125c5d/how-to-use-redim-preserve-in-cnet?forum=aspgettingstarted
@@ -84,8 +84,11 @@ namespace Asteroids
             for (int j = 0; j <= Asteroids_Game.Asteroids_array[i].numberOfPoints - 1; j++)//number of points is zero here so loop is not running
             //for (int j = 0; j <= 9; j++)
             { //'loop through the points of the asteroid
-                Asteroids_Game.Asteroids_array[i].xPoints[j] += ((Math.Cos(Asteroids_Game.Asteroids_array[i].aAngle)) * Asteroids_Game.Asteroids_array[i].aSpeed); //'update the x coordinates
-                Asteroids_Game.Asteroids_array[i].yPoints[j] += ((Math.Sin(Asteroids_Game.Asteroids_array[i].aAngle)) * Asteroids_Game.Asteroids_array[i].aSpeed); //'update the y coordinates
+                double o = ((Math.Cos(Asteroids_Game.Asteroids_array[i].aAngle)) * Asteroids_Game.Asteroids_array[i].aSpeed);
+                double p = ((Math.Sin(Asteroids_Game.Asteroids_array[i].aAngle)) * Asteroids_Game.Asteroids_array[i].aSpeed);
+
+                Asteroids_Game.Asteroids_array[i].xPoints[j] += o; //'update the x coordinates
+                Asteroids_Game.Asteroids_array[i].yPoints[j] += p; //'update the y coordinates
                 Point OnePoint = new Point(Convert.ToInt32(Asteroids_Game.Asteroids_array[i].xPoints[j]), Convert.ToInt32(Asteroids_Game.Asteroids_array[i].yPoints[j])); //'combining the coordinates into a point
                 Asteroids_Game.Asteroids_array[i].AsteroidPoints[j] = (OnePoint);//'add the point to the array
 
